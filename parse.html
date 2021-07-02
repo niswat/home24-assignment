@@ -1,0 +1,12 @@
+<h1>Title : <strong>{{.Title}}</strong></h1>
+<h1>Version : <strong>{{.HtmlVersion}}</strong></h1>
+<h1>H1Count : <strong>{{index .HeadingsCount 0}}</strong></h1>
+<h1>H2Count : <strong>{{index .HeadingsCount 1}}</strong></h1>
+<h1>H3Count : <strong>{{index .HeadingsCount 2}}</strong></h1>
+<h1>H4Count : <strong>{{index .HeadingsCount 3}}</strong></h1>
+<h1>H5Count : <strong>{{index .HeadingsCount 4}}</strong></h1>
+<h1>H6Count : <strong>{{index .HeadingsCount 5}}</strong></h1>
+<h1>Internal :<strong>{{.InternalLinksCount}}</strong></h1>
+<h1>External :<strong>{{.ExternalLinksCount}}</strong></h1>
+<h1>Brokenlinks : <strong>{{.BrokenLinksCount}}</strong></h1>
+<h1>Login Form Exists : <strong>{{.HasLoginForm}}</strong></h1>
