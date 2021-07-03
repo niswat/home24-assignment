@@ -32,7 +32,7 @@ docker run -d -p 8082:8082 home24assign
 ```
 ### List all containers
 ```
- docker ps -a `
+ docker ps -a
 ```
 ### Accessing the application
 
@@ -51,6 +51,6 @@ If the application fails , access the logs to understand the failure and after f
 ### Accessing the logs
 
 ```
-docker logs <id of running or stopped container>*
+docker logs <id of running or stopped container>
 ```
 
