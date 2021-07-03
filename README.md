@@ -11,8 +11,9 @@ about the contents of the page:
 - If a page contains a login form
 
 ## Pre-requisites
-Docker latest version : Docker version 20.10.7
-Make sure port 8082 is not in use as our aplpication will be listening on this port
+- Internet Browser with lastest version installed , recommended Chrome/Firefox
+- Docker latest version installted, recommended v20.10.7
+- Make sure port 8082 is not in use as our aplpication will be listening on this port
 
 ## Quickstart
 
@@ -35,14 +36,20 @@ docker run -d -p 8082:8082 home24assign
 ```
 ### Accessing the application
 
-In you browser type
+Access the browser and enter the command : 
 ```
 localhost:8082
 ```
+### Crawling an URL
 
-Ouput will be displayed in the browser 
+Add a url in the box say `https://www.example.com` and click submit button.
+
+Wait for sometime for the browser to display the expected output.
+
+If the application fails , access the logs to understand the failure and after fixing it , re-trigger the application using `docker run -d -p 8082:8082 home24assign`
 
 ### Accessing the logs
+
 ```
 docker logs <id of running or stopped container>*
 ```
