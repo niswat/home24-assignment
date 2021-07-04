@@ -22,18 +22,18 @@ about the contents of the page:
 git clone git@github.com:niswat/home24-assignment.git
 ```
 ### Building the Docker Image
+Before running the application, the first step is to create a docker image so as to run it inside the container.
 ```
 docker build -t home24assign .
 ```
 
 ### Running the application 
+
+To start the application, execute the command
 ```
 docker run -d -p 8082:8082 home24assign
 ```
-### List all containers
-```
- docker ps -a
-```
+
 ### Accessing the application
 
 Launch the browser and in a new tab enter the command : 
@@ -46,10 +46,21 @@ Add a url in the box say `https://www.example.com` and click `check` button.
 
 Wait for sometime for the browser to display the expected output.
 
-If the application fails , access the logs as shown below to understand the failure and after fixing it , re-trigger the application using `docker run -d -p 8082:8082 home24assign`
+### List all containers
+```
+ docker ps -a
+```
+### Stop and Start the Containers
 
+To stop the running application, execute the command `docker stop <container id> `.  
+To restart the application, execute the command `docker start <conatiner id>`
+
+### Removing the application
+To permanently delete the application, execute the command
+```
+docker rm -f <contianer id>
+```
 ### Accessing the logs
-
 ```
 docker logs <id of running or stopped container>
 ```
