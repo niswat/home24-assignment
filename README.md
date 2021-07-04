@@ -13,7 +13,7 @@ about the contents of the page:
 ## Pre-requisites
 - Internet Browser with lastest version installed , recommended Chrome
 - Docker latest version installted, recommended v20.10.7
-- Make sure port 8082 is not in use as our aplpication will be listening on this port
+- Make sure port 8082 is not in use as our application will be listening on this port
 
 ## Quickstart
 
@@ -31,7 +31,7 @@ docker build -t home24assign .
 
 To start the application, execute the command
 ```
-docker run -d -p 8082:8082 home24assign
+docker run -d --name web-scraper -p 8082:8082 home24assign
 ```
 
 ### Accessing the application
