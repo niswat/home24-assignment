@@ -2,19 +2,18 @@ package webtool
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
+// This functions checks whether a given web page has a login form or not
 func CheckLoginForm(url string) (string, error) {
 
-	resp, err := http.Get(url)
+	resp, err := HttpResponse(url)
 	if err != nil {
-		log.Fatal(err)
 		return "", err
 	}
-	// Making sure we close the writer after reading from it
+	// The client must close the response body when finished with it
 	defer resp.Body.Close()
 
 	doc, err := goquery.NewDocumentFromReader(resp.Body)

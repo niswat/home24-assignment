@@ -2,21 +2,19 @@ package webtool
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
+// This function gets the title of a web page and counts the number of Headings for each level of headings `H1...H6` in a web page.
 func HeadingsCountAndTitle(url string) (string, []int, error) {
 
 	title := ""
 	headingsCount := make([]int, 0)
-	resp, err := http.Get(url)
+	resp, err := HttpResponse(url)
 	if err != nil {
-		log.Fatal(err)
 		return title, headingsCount, err
 	}
-	// Making sure we close the writer after reading from it
 	defer resp.Body.Close()
 
 	// Creating a Document Object (DOM tree) to parse the html data

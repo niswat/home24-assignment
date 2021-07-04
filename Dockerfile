@@ -25,15 +25,10 @@ WORKDIR /dest
 # Copy binary to dest folder
 RUN cp /src/webtool .
 
-FROM alpine:latest
+FROM scratch
 
 WORKDIR /
 COPY --from=builder /dest/webtool .
-
-# Adding ssl certificates
-RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
-COPY ./certificate.crt /usr/local/share/ca-certificates/certificate.crt
-RUN update-ca-certificates
 
 # copying the html templates
 COPY index.html index.html

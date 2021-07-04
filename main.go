@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -21,24 +22,27 @@ type WebPage struct {
 	Msg                string
 }
 
+// This function evaluates whether a given url is a valid url or not.
 func Validate(url string) (string, bool) {
-
 	match := true
-	_, err := http.Get(url)
-	if err != nil {
+	resp, err := webtool.HttpResponse(url)
+	if err != nil || resp.StatusCode >= 400 {
 		match = false
 	}
 	if !match {
 		return "domain does not exist", match
 	}
+	defer resp.Body.Close()
 	return "", match
 }
 
-// Calling ParseFiles function once at program initialization to parse all templates into a single *Template (template Caching)
+// Calling ParseFiles function once at program initialization to parse all templates (if present) into a
+// single *Template (template Caching)
 var templates = template.Must(template.ParseFiles("index.html"))
 
-// This functions helps in avoiding the usage of template.Parsefiles() in each handler
+// This functions helps in avoiding the usage of template.Parsefiles() in each handler if there are any
 func renderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
+
 	// Parse the html template and in case of an error, return an Internal Server Error (500)
 	err := templates.ExecuteTemplate(w, tmpl+".html", data)
 	if err != nil {
@@ -48,7 +52,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
 
 func scrapHandler(w http.ResponseWriter, req *http.Request) {
 
-	// This is to handle the case if application is accessed at some other end poibnt than `\`
+	// This is to handle the case if application is accessed at some other endpoint than `\`
 	if req.URL.Path != "/" {
 		http.NotFound(w, req)
 		return
@@ -75,9 +79,9 @@ func scrapHandler(w http.ResponseWriter, req *http.Request) {
 			return
 		}
 
-		// pass this url IntExtBrokenLink
 		internalLinksCount, externalLinksCount, brokenLinksCount, err := webtool.IntExtBrokenLink(myurl)
 		if err != nil {
+			fmt.Println("This is err")
 			log.Fatal(err)
 			return
 		}

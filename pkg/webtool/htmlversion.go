@@ -3,17 +3,15 @@ package webtool
 import (
 	"io/ioutil"
 	"log"
-	"net/http"
 	"regexp"
 )
 
+// This function returns the html version of a given url
 func CheckHtmlVersion(url string) (string, error) {
-	resp, err := http.Get(url)
+	resp, err := HttpResponse(url)
 	if err != nil {
-		log.Fatal(err)
 		return "", err
 	}
-	// Making sure we close the writer after reading from it
 	defer resp.Body.Close()
 
 	// Reading html as a slice of bytes
