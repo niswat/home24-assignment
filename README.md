@@ -46,8 +46,8 @@ localhost:8082
 
 Add a url in the box say `https://www.google.com` and click `check` button.
 
-Wait for sometime for the browser to display the output.
-
+Wait for sometime for the browser to display the output. Also depending on the number of internal and external links,
+some web pages might take a bit longer to render the output.
 ### List all images
 To list all the docker images
 ```
