@@ -21,6 +21,7 @@ about the contents of the page:
 ### Cloning the git repository
 ```
 git clone git@github.com:niswat/home24-assignment.git
+cd home24-assignment
 ```
 ### Building the Docker Image
 Before running the application, the first step is to create a docker image so as to run it inside the container.
