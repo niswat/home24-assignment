@@ -13,8 +13,8 @@ about the contents of the page:
 ## Pre-requisites
 - Internet Browser with lastest version installed , recommended Chrome
 - Docker latest version installted, recommended v20.10.7
-- Disable VPN if any as it may block the requests sent to certain web pages.
 - Make sure port 8082 is not in use as our application will be listening on this port
+- If using any VPN, make sure does it not blocks access to any website.
 
 ## Quickstart
 
@@ -43,7 +43,7 @@ localhost:8082
 ```
 ### Crawling an URL
 
-Add a url in the box say `https://www.example.com` and click `check` button.
+Add a url in the box say `https://www.google.com` and click `check` button.
 
 Wait for sometime for the browser to display the output.
 
