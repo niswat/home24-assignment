@@ -17,20 +17,17 @@ RUN go mod download
 COPY . .
 
 # Build the application
-##RUN go build -o main . 
 RUN go build -o webtool main.go
 
 # Move to /dest directory as the place for resulting binary folder
 WORKDIR /dest
 
-# Copy binary from build to main folder
-##RUN cp /src/main .
+# Copy binary to dest folder
 RUN cp /src/webtool .
 
 FROM alpine:latest
 
 WORKDIR /
-##COPY --from=builder /dest/main .
 COPY --from=builder /dest/webtool .
 
 # Adding ssl certificates
@@ -40,11 +37,9 @@ RUN update-ca-certificates
 
 # copying the html templates
 COPY index.html index.html
-COPY parse.html parse.html
 
 EXPOSE 8082
 
-##ENTRYPOINT ["/main"]
 ENTRYPOINT ["/webtool"]
 
 

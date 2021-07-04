@@ -27,7 +27,7 @@ func IntExtBrokenLink(url string) (int, int, int, error) {
 	// Making sure we close the writer after reading from it
 	defer resp.Body.Close()
 
-	// Creeating a Document Object to parse the html data
+	// Creating a Document Object to parse the html data
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
 		log.Fatal(err)
@@ -98,12 +98,12 @@ func IntExtBrokenLink(url string) (int, int, int, error) {
 	return internalLinksCount, externalLinksCount, brokenLinksCount, nil
 }
 
-// This function gets the response object for the url to chceck whether
+// This function gets the response object for the url to chceck whether it is broken or not.
 func CheckBrokenLink(url string) (*http.Response, error) {
 
 	// Create a http client with sensible timeout
 	// Setting DisablekeepAlive will only use the connection to the server for a single
-	// HTTP request and will avoid EOF error which
+	// HTTP request and will avoid EOF error which may result due to use of same connection by two requests
 	tr := &http.Transport{
 		MaxIdleConns:      30,
 		IdleConnTimeout:   30 * time.Second,

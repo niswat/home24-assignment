@@ -1,14 +1,138 @@
-<h1>Display a URL Input Field</h1>
-<!-- <h1>Display a URL Input Fielddddd</h1> -->
-<!-- <h1>Display a URL Input Fieldsssss</h1> -->
-<form action="/parse" method="POST">
-<!-- <label for="homepage">Add your URL:</label> -->
-<input type="url" id="url" name="url"><br><br>
-<input type="submit" value="submit">
-</form>
-<!-- <h2>Display a URL Input Field</h2> -->
-<!-- <h2>Display a URL Input Field</h2> -->
-<!-- <h3>Display a URL Input Field</h3> -->
-<!-- <h3>Display a URL Input Field</h3> -->
-<!-- <h5>Display a URL Input Field</h5> -->
-<!-- <h6>Display a URL Input Field</h5> -->
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>
+      Home24 Assignment
+    </title>
+    <style>
+      body {
+        text-align: center;
+      }
+
+      form {
+        display: inline-block;
+      }
+
+      #pageloader {
+        background: rgba(255, 255, 255, 0.8);
+        display: none;
+        height: 100%;
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+      }
+
+      #pageloader img {
+        left: 50%;
+        margin-left: -32px;
+        margin-top: -32px;
+        position: absolute;
+        top: 50%;
+      }
+
+      tr,
+      td,
+      th {
+        border-bottom: 0.5px solid grey;
+        text-align: left;
+        padding: 10px;
+        background-color: #F0FFFF;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 18px;
+      }
+
+      table {
+        width: 120%;
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+        border-color: grey;
+      }
+      .error {color: red;}
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="pageloader">
+      <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="processing..." />
+    </div>
+    <h1>Website Scraper</h1>
+    <form id="myform" action="/" method="POST">
+      <input type="url" id="url" name="url" placeholder="Enter the Webpage URL">
+      <input type="submit" value="check">
+      {{if .MsgExists}}
+      <p class="error">{{ .Msg }}</p>
+      {{end}}
+      <br>
+      <br>
+      <br>
+      {{if .Exists }}
+      <table>
+        <tbody>
+          <tr>
+            <th>Page Title</th>
+            <td>{{.Title}}</td>
+          </tr>
+          <tr>
+            <th>Version</th>
+            <td>{{.HtmlVersion}}</td>
+          </tr>
+          <tr>
+            <th>Heading 1</th>
+            <td>{{index .HeadingsCount 0}}</td>
+          </tr>
+          <tr>
+            <th>Heading 2</th>
+            <td>{{index .HeadingsCount 1}}</td>
+          </tr>
+          <tr>
+            <th>Heading 3</th>
+            <td>{{index .HeadingsCount 2}}</td>
+          </tr>
+          <tr>
+            <th>Heading 4</th>
+            <td>{{index .HeadingsCount 3}}</td>
+          </tr>
+          <tr>
+            <th>Heading 5</th>
+            <td>{{index .HeadingsCount 4}}</td>
+          </tr>
+          <tr>
+            <th>Heading 6</th>
+            <td>{{index .HeadingsCount 5}}</td>
+          </tr>
+          <tr>
+            <th>Internal Links</th>
+            <td>{{.InternalLinksCount}}</td>
+          </tr>
+          <tr>
+            <th>External Links</th>
+            <td>{{.ExternalLinksCount}}</td>
+          </tr>
+          <tr>
+            <th>Inaccessible Links</th>
+            <td>{{.BrokenLinksCount}}</td>
+          </tr>
+          <tr>
+            <th>Login Form Exists</th>
+            <td>{{.HasLoginForm}}</td>
+          </tr>
+        </tbody>
+      </table>
+      {{end}}
+    </form>
+
+    <script>
+      $(document).ready(function () {
+        $("#myform").on("submit", function () {
+          $("#pageloader").fadeIn();
+        });
+      });
+
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+      }
+    </script>
+  </body>
+</html>
