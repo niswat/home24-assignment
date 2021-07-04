@@ -48,6 +48,11 @@ Add a url in the box say `https://www.google.com` and click `check` button.
 
 Wait for sometime for the browser to display the output.
 
+### List all images
+To list all the docker images
+```
+ docker images
+```
 ### List all containers
 To list all the running/exited containers.
 ```
